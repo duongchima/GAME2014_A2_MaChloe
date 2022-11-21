@@ -8,7 +8,7 @@ using TMPro;
 Instructions Panel
 Name: Chloe Ma 
 Student #: 101260013
-Date last modified: 02/10/22
+Date last modified: 20/11/22
 Description: Controls the Instructions Panel's image and text displays.
  */
 public class InstructionsPanel : MonoBehaviour

@@ -1,7 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+Player Behaviour
+Name: Chloe Ma 
+Student #: 101260013
+Date last modified: 20/11/22
+Description: Controls the Player's movement and behaviours.
+ */
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject gameover;
