@@ -44,6 +44,14 @@ public class InstructionsPanel : MonoBehaviour
             index++;
         }
     }
+    public void PrevPage()
+    {
+        // decreases the index
+        if (index > 0)
+        {
+            index--;
+        }
+    }
     public void ResetPages()
     {
         // resets the index

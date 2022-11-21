@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 64348626}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772432611}
+        m_TargetAssemblyTypeName: InstructionsPanel, Assembly-CSharp
+        m_MethodName: PrevPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &64348626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +882,7 @@ GameObject:
   - component: {fileID: 772432608}
   - component: {fileID: 772432610}
   - component: {fileID: 772432609}
+  - component: {fileID: 772432611}
   m_Layer: 5
   m_Name: InstructionsScreen
   m_TagString: Untagged
@@ -936,6 +949,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772432607}
   m_CullTransparentMesh: 1
+--- !u!114 &772432611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772432607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e71cbde0cb671640b7e78320031f8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptionDisplay: {fileID: 980382121}
+  imageDisplay: {fileID: 580097909}
+  descriptions:
+  - Use the joystick to move the character
+  - Becoming in contact with enemies will damage you, be careful! Lose all your HP
+    and it's game over
+  - Tilt joystick up to jump on platforms
+  images:
+  - {fileID: 21300000, guid: 2372487fd36be854bb68a9e1ead43491, type: 3}
+  - {fileID: 21300000, guid: 6c63f976df10dd7408c02da5c0f21d0c, type: 3}
+  - {fileID: 21300000, guid: 315a040da6580894ebc1d836fd6045c2, type: 3}
+  index: 0
 --- !u!1 &793996702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1060,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 772432611}
+        m_TargetAssemblyTypeName: InstructionsPanel, Assembly-CSharp
+        m_MethodName: ResetPages
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1173,7 +1222,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980382121
 MonoBehaviour:
@@ -1489,7 +1538,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1148192523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772432611}
+        m_TargetAssemblyTypeName: InstructionsPanel, Assembly-CSharp
+        m_MethodName: NextPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1148192523
 MonoBehaviour:
   m_ObjectHideFlags: 0
