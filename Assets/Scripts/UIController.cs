@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<PlayerBehaviour>();
-        scoreText = GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
     // Start is called before the first frame update
     void Start()

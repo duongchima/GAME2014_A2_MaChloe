@@ -4,30 +4,29 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public class TileMapParallax : MonoBehaviour
 {
-    [SerializeField] float scrollSpeed = 0.3f;
-    [SerializeField] float offset = 0f;
-    [SerializeField] GameObject viewTarget;
-    [SerializeField] bool xOnly = true;
+    [SerializeField] float depth = 1;
+    PlayerBehaviour player;
+    [SerializeField] float minBoundsX;
+    [SerializeField] float maxBoundsX;
 
     Tilemap tileMap;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         tileMap = GetComponent<Tilemap>();
+        player = FindObjectOfType<PlayerBehaviour>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        float newXPos = viewTarget.transform.position.x * (scrollSpeed + offset);
-        float newYPos = viewTarget.transform.position.y * (scrollSpeed + offset);
-        if (xOnly)
+        float velocity = player.velocity.x / depth;
+        Vector2 pos = tileMap.transform.position;
+
+        pos.x -= velocity * Time.fixedDeltaTime;
+        if(pos.x <= minBoundsX)
         {
-            tileMap.transform.position = new Vector3(newXPos, tileMap.transform.position.y, tileMap.transform.position.z);
+            pos.x = maxBoundsX;
         }
-        else
-        {
-            tileMap.transform.position = new Vector3(newXPos, newYPos, tileMap.transform.position.z);
-        }
+
+        tileMap.transform.position = pos;
     }
 }
