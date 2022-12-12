@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float distance = 0;
     public float maxJumpForce;
     public float currentJumpForce = 0f;
+    public float maxJumpHeightCap;
     public float maxJumpHeight;
     public Vector3 startPos;
     public Transform groundPoint;
@@ -28,8 +29,6 @@ public class PlayerBehaviour : MonoBehaviour
     public bool isGrounded = false;
 
     public bool isHoldingJump = false;
-    public float maxHoldJumpTime = 1f;
-    public float jumpTimeHeld = 0.0f;
 
     public float jumpGroundThreshold = 2;
     private Rigidbody2D rigidbody2D;
@@ -55,22 +54,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         var hit = Physics2D.OverlapCircle(groundPoint.position, groundRadius, groundLayerMask);
         isGrounded = hit;
+        
         Jump();
-        //if (!isGrounded)
-        //{
-        //    if (isHoldingJump)
-        //    {
-        //        jumpTimeHeld += Time.fixedDeltaTime;
-        //        if (jumpTimeHeld >= maxHoldJumpTime)
-        //        {
-        //            isHoldingJump = false;
-        //        }
-        //    }
-        //    if (!isHoldingJump)
-        //    {
-        //        velocity.y += gravity * Time.fixedDeltaTime;
-        //    }
-        //}
 
         Move();
     }
@@ -81,6 +66,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             float velocityRatio = velocity.x / maxXVelocity;
             acceleration = maxAcceleration * (1 - velocityRatio);
+            maxJumpHeight = maxJumpHeightCap * velocityRatio;
             velocity.x += acceleration * Time.fixedDeltaTime;
 
             if (velocity.x >= maxXVelocity)
@@ -91,29 +77,13 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void Jump()
     {
-        //if(Input.touchCount > 0)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-
-        //    if ((isGrounded) && (touch.phase == TouchPhase.Began))
-        //    {
-        //        if (!isHoldingJump)
-        //        {
-        //            isHoldingJump = true;
-        //        }
-        //    }
-        //    else if(touch.phase == TouchPhase.Ended)
-        //    {
-        //        isHoldingJump = false;
-        //    }
-        //}
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isGrounded)
+      
+        if((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) && isGrounded)
         {
             currentJumpForce = maxJumpForce;
-
             isHoldingJump = true;
         }
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
         {
             currentJumpForce = 0f;
             isHoldingJump = false;
@@ -122,10 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rigidbody2D.AddForce(Vector2.up * currentJumpForce, ForceMode2D.Impulse);
         }
-        //else
-        //{
-        //    currentJumpForce = 0f;
-        //}
+
     }
     private void OnDrawGizmos()
     {
