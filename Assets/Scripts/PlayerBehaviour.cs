@@ -32,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public float jumpGroundThreshold = 2;
     private Rigidbody2D rigidbody2D;
+    SoundManager soundManager;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        soundManager = FindObjectOfType<SoundManager>();
         startPos = transform.position;
     }
 
@@ -80,6 +82,7 @@ public class PlayerBehaviour : MonoBehaviour
       
         if((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) && isGrounded)
         {
+            soundManager.PlaySoundFX(Sound.JUMP, Channel.PLAYER_SOUND_FX);
             currentJumpForce = maxJumpForce;
             isHoldingJump = true;
         }

@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 public class UIController : MonoBehaviour
 {
     PlayerBehaviour player;
-    TextMeshProUGUI scoreText;
     [SerializeField] GameObject pauseScreen, gameOverScreen;
-    [SerializeField] TextMeshProUGUI finalScore;
+    [SerializeField] TextMeshProUGUI scoreText, finalScore;
     bool gameOver = false;
     bool gameIsPaused = false;
 
     private void Awake()
     {
         player = FindObjectOfType<PlayerBehaviour>();
-        scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
     // Start is called before the first frame update
     void Start()
@@ -44,23 +41,20 @@ public class UIController : MonoBehaviour
         Time.timeScale = 0f;
         pauseScreen.SetActive(true);
         gameIsPaused = true;
+        scoreText.gameObject.SetActive(false);
     }
     public void Resume()
     {
         Time.timeScale = 1f;
         pauseScreen.SetActive(false);
         gameIsPaused = false;
+        scoreText.gameObject.SetActive(true);
     }
 
     public void Restart()
     {
         gameOver = false;
         gameOverScreen.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
 }

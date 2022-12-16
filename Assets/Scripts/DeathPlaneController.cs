@@ -12,13 +12,11 @@ Description: Collider that triggers the player to respawn back to its checkpoint
 [System.Serializable]
 public class DeathPlaneController : MonoBehaviour
 {
-    public Transform currentCheckPoint;
-    UIController gameController;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "Player")
         {
-            gameController.PlayerDeath();
+            FindObjectOfType<UIController>().PlayerDeath();
 
             FindObjectOfType<SoundManager>().PlaySoundFX(Sound.DEATH, Channel.PLAYER_DEATH_FX);
         }
