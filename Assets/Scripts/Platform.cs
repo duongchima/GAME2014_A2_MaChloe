@@ -58,7 +58,7 @@ public class Platform : MonoBehaviour
         Vector2 pos;
 
 
-        pos.x = bottomRight.x + 20;
+        pos.x = bottomRight.x + 40;
         pos.y = Random.Range(-20,-13);
         go.transform.position = pos;
 

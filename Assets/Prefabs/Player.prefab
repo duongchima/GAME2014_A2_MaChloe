@@ -129,8 +129,8 @@ MonoBehaviour:
   distance: 0
   maxJumpForce: 3
   currentJumpForce: 0
-  maxJumpHeightCap: 2
-  maxJumpHeight: -0.5
+  maxJumpHeightCap: 4
+  maxJumpHeight: 0.3
   startPos: {x: 0, y: 0, z: 0}
   groundPoint: {fileID: 4014117583388122202}
   groundRadius: 0.5
@@ -140,6 +140,8 @@ MonoBehaviour:
   isGrounded: 0
   isHoldingJump: 0
   jumpGroundThreshold: 2
+  animator: {fileID: 0}
+  playerAnimState: 0
 --- !u!70 &5255884048111574230
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
