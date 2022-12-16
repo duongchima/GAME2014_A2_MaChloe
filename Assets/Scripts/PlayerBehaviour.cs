@@ -94,6 +94,13 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
     }
+
+    public void Restart()
+    {
+        transform.position = startPos;
+        distance = 0;
+        velocity = new Vector2(0, 0);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
