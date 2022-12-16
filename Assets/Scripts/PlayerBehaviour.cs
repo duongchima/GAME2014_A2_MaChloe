@@ -31,6 +31,9 @@ public class PlayerBehaviour : MonoBehaviour
     public bool isHoldingJump = false;
 
     public float jumpGroundThreshold = 2;
+
+    public Animator animator;
+    public PlayerAnimState playerAnimState;
     private Rigidbody2D rigidbody2D;
     SoundManager soundManager;
 
@@ -43,6 +46,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         soundManager = FindObjectOfType<SoundManager>();
+        animator = GetComponent<Animator>();
         startPos = transform.position;
     }
 
@@ -66,6 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
         distance += velocity.x * Time.fixedDeltaTime;
         if (isGrounded)
         {
+            ChangeAnimation(PlayerAnimState.RUN);
             float velocityRatio = velocity.x / maxXVelocity;
             acceleration = maxAcceleration * (1 - velocityRatio);
             maxJumpHeight = maxJumpHeightCap * velocityRatio;
@@ -83,6 +88,7 @@ public class PlayerBehaviour : MonoBehaviour
         if((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) && isGrounded)
         {
             soundManager.PlaySoundFX(Sound.JUMP, Channel.PLAYER_SOUND_FX);
+            ChangeAnimation(PlayerAnimState.JUMP);
             currentJumpForce = maxJumpForce;
             isHoldingJump = true;
         }
@@ -90,6 +96,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             currentJumpForce = 0f;
             isHoldingJump = false;
+            ChangeAnimation(PlayerAnimState.FALL);
         }
         if (isHoldingJump && transform.position.y - startPos.y < maxJumpHeight)
         {
@@ -103,6 +110,12 @@ public class PlayerBehaviour : MonoBehaviour
         transform.position = startPos;
         distance = 0;
         velocity = new Vector2(0, 0);
+    }
+
+    private void ChangeAnimation(PlayerAnimState animationState)
+    {
+        playerAnimState = animationState;
+        animator.SetInteger("AnimationState", (int)playerAnimState);
     }
     private void OnDrawGizmos()
     {
